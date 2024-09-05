@@ -63,8 +63,9 @@ const form = document.querySelector("form");
 const searchProducts = document.querySelector(".inp");
 const Submit = (e)=>{
   e.preventDefault();
-  console.log(searchProducts.value);
-  form.reset();
+  let inputval = searchProducts.value.toLowerCase();
+  let filteredProducts = productList.filter(item => item.title.toLowerCase().includes(inputval));
+  renderData(filteredProducts, cardContainer, productCard);
 }
 form.addEventListener("submit", Submit);
 
@@ -72,10 +73,14 @@ form.addEventListener("submit", Submit);
 
 
 
-let titles = ["apple","banana","mango"];
+// let titles = ["apple","banana","mango"];
 // let inputValue = "t";
-let title = "na";
-let filterArr = titles.filter(item=>item.toLowerCase().includes(title.toLowerCase()));
-console.log(filterArr);
+// let title = "na";
+// let filterArr = titles.filter(item=>item.toLowerCase().includes(title.toLowerCase()));
+// console.log(filterArr);
 // let match = title.includes(inputValue);
-console.log(match);
+// console.log(match);
+
+
+
+

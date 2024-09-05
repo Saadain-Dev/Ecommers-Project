@@ -46,10 +46,14 @@ const renderData = (data, container, fun) => {
 
 const fetchDataByApi = async () => {
 
-    renderData([1,1,1,1],cardContainer,productCardSkeleton)
+    renderData([1,1,1,1,1,1],cardContainer,productCardSkeleton);
     let { data } = await axios.get("https://66d70f85006bfbe2e64fa810.mockapi.io/products");
-    productList = data
-    renderData(data, cardContainer, productCard);
+    if(data.length == 0) {
+        cardContainer.innerHTML = "<h1 class='col-span-full text-white text-2xl'>No Products Available</h1>"
+    }else{
+        productList = data
+        renderData(data, cardContainer, productCard);
+    }
 
 };
 
@@ -59,7 +63,8 @@ const form = document.querySelector("form");
 const searchProducts = document.querySelector(".inp");
 const Submit = (e)=>{
   e.preventDefault();
-  searchProducts.reset();
+  console.log(searchProducts.value);
+  form.reset();
 }
 form.addEventListener("submit", Submit);
 
@@ -67,10 +72,10 @@ form.addEventListener("submit", Submit);
 
 
 
-// let titles = ["apple","banana","mango"];
-// // let inputValue = "t";
-// let title = "na";
-// let filterArr = titles.filter(item=>item.toLowerCase().includes(title.toLowerCase()));
-// console.log(filterArr);
-// // let match = title.includes(inputValue);
-// console.log(match);
+let titles = ["apple","banana","mango"];
+// let inputValue = "t";
+let title = "na";
+let filterArr = titles.filter(item=>item.toLowerCase().includes(title.toLowerCase()));
+console.log(filterArr);
+// let match = title.includes(inputValue);
+console.log(match);
